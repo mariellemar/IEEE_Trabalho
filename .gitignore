@@ -1,0 +1,21 @@
+# Virtual environment
+.venv/
+venv/
+
+# Bytecode
+*.pyc
+__pycache__/
+
+# Editor/IDE specific files
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+
+# Database files
+*.db
+
+# Environment variables / secrets
+.env

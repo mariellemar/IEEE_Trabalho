@@ -1,0 +1,65 @@
+<form>
+    <label for="analise">Análise aprovada para o projeto:</label>
+    <select [(ngModel)]="newItem.analise" name="analise" id="analise">
+        <option value="">-- Selecione um ID--</option>
+        <option *ngFor="let analise of analises" [value]="analise">{{ analise }}</option>
+    </select>
+    <br>
+
+    <label for="descricao">Descrição técnica:</label>
+    <input [(ngModel)]="newItem.descricao" name="descricao" id="descricao" type="text" placeholder="Explicação do projeto"/>
+    <br>
+
+    <div class="datas">
+        <label for="inicio">Início do projeto:</label>
+        <input [(ngModel)]="newItem.inicio" name="inicio" id="inicio" type="date"/>
+        
+        <label for="final">Fim do projeto:</label>
+        <input [(ngModel)]="newItem.final" name="final" id="final" type="date"/> 
+    </div>
+
+    <label for="responsavel">Arquiteto:</label>
+    <input [(ngModel)]="newItem.responsavel" name="responsavel" id="responsavel" type="text" placeholder="Desenvolvedor encarregado"/>
+    <br>
+
+    <p>Status</p><br>
+    <div class="status">
+        <input [(ngModel)]="newItem.status" type="radio" id="status_0" name="status_projeto" value="Em andamento" checked>
+        <label for="status_0">Em andamento</label>
+        <input [(ngModel)]="newItem.status" type="radio" id="status_1" name="status_projeto" value="Em implementação">   
+        <label for="status_1">Em implementação</label>
+    </div>
+    <br>
+
+    <button type="submit" (click)="onSubmit()">Enviar</button>
+</form>
+
+<table class="table-projetos">
+<thead>
+    <tr>
+        <th>ID</th>
+        <th>Análise (ID)</th>
+        <th>Descrição técnica</th>
+        <th>Início</th>
+        <th>Final</th>
+        <th>Responsável</th>
+        <th>Status</th>
+        <th>Ações</th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let item of items">
+        <td>{{ item.id }}</td>
+        <td>{{ item.analise }}</td>
+        <td>{{ item.descricao }}</td>
+        <td>{{ item.inicio }}</td>
+        <td>{{ item.final }}</td>
+        <td>{{ item.responsavel }}</td>
+        <td>{{ item.status }}</td>
+        <td>
+            <button (click)="editItem(item)">Editar</button>
+            <button (click)="deleteItem(item.id)">Excluir</button>
+        </td>
+    </tr>
+</tbody>
+</table>

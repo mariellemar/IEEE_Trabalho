@@ -1,0 +1,35 @@
+<form>
+    <label for="analise">Análise aprovada para o projeto:</label>
+    <select name="analise" id="analise">
+        <option value="">-- Selecione um ID--</option>
+        <option *ngFor="let analise of analises">{{ analise }}</option>
+    </select>
+    <br>
+
+    <label for="descricao">Descrição técnica:</label>
+    <input name="descricao" id="descricao" type="text" placeholder="Explicação do projeto"/>
+    <br>
+
+    <div class="datas">
+        <label for="inicio">Início do projeto:</label>
+        <input name="inicio" id="inicio" type="date"/>
+        
+        <label for="final">Fim do projeto:</label>
+        <input name="final" id="final" type="date"/> 
+    </div>
+
+    <label for="arquiteto">Arquiteto:</label>
+    <input name="arquiteto" id="arquiteto" type="text" placeholder="Desenvolvedor encarregado"/>
+    <br>
+
+    <p>Status</p><br>
+    <div class="status">
+        <input type="radio" id="status_0" name="status_projeto" value="Em andamento" checked>
+        <label for="status_0">Em andamento</label>
+        <input type="radio" id="status_1" name="status_projeto" value="Em implementação">   
+        <label for="status_1">Em implementação</label>
+    </div>
+    <br>
+
+    <button type="submit">Enviar</button>
+</form>

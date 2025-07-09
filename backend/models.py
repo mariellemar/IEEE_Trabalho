@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, Text, Date
-from database import Base
+from .database import Base
 
- 
+
 class Projeto(Base):
     __tablename__ = "projeto"
     id_projeto = Column(Integer, primary_key=True, index=True)

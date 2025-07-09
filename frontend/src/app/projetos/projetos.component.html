@@ -1,3 +1,13 @@
+<feedback-dialog
+    [show] = "showDialog"
+    [title] = "dialogTitle"
+    [message] = "dialogMessage"
+    [type] = "dialogType"
+    (confirm) = "onDialogConfirm()"
+    (close) = "closeFeedback()"    
+>
+</feedback-dialog>
+
 <form>
     <label for="analise">Análise aprovada para o projeto:</label>
     <select [(ngModel)]="newItem.analise" name="analise" id="analise">
@@ -58,7 +68,7 @@
         <td>{{ item.status }}</td>
         <td>
             <button (click)="editItem(item)">Editar</button>
-            <button (click)="deleteItem(item.id)">Excluir</button>
+            <button (click)="confirmDelete(item.id)">Excluir</button>
         </td>
     </tr>
 </tbody>

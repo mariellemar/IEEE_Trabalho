@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from pydantic.alias_generators import to_camel
 from datetime import date
 
 
@@ -19,4 +20,6 @@ class Projeto(ProjetoBase):
     id_projeto: int
 
     class Config:
+        alias_generator = to_camel
+        validate_by_name = True
         orm_mode = True

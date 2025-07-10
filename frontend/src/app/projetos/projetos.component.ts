@@ -26,16 +26,21 @@ export class Projetos {
   dialogMessage = "";
   dialogType: "confirm" | "alert" = "alert";
 
-  newItem = {
-    analise : "",
-    descricao : "",
-    inicio : "",
-    final : "",
-    responsavel : "",
-    status : "Em andamento",
+  statusMap: Record<number, string> = {
+    1: "Em Implementação",
+    2: "Em Andamento"
   };
 
-  constructor(private projetoService: ProjetosMockService) {}
+  newItem = {
+    id_analise : "",
+    descricao_tecnica : "",
+    data_inicio_projeto : "",
+    data_final_projeto : "",
+    arquiteto_responsavel : "",
+    status : "1",
+  };
+
+  constructor(private projetoService: ProjetosService) {}
 
   ngOnInit() {
     this.projetoService.getProjetos().subscribe(data => this.items = data);
@@ -51,10 +56,10 @@ export class Projetos {
     }
 
     if (this.editing && this.editID !== null) {
-      const updatedItem = { id: this.editID, ...this.newItem };
+      const updatedItem = { id_projeto: this.editID, ...this.newItem };
       
       this.projetoService.updateProjeto(this.editID, updatedItem).subscribe(() => {
-        const index = this.items.findIndex(i => i.id === this.editID);
+        const index = this.items.findIndex(i => i.id_projeto === this.editID);
         if (index !== -1) this.items[index] = updatedItem;
 
         this.projetoService.getProjetos().subscribe(data => this.items = data);
@@ -78,7 +83,7 @@ export class Projetos {
   editItem(item: any) {
     this.newItem = {...item};
     this.editing = true;
-    this.editID = item.id;
+    this.editID = item.id_projeto;
   };
 
 
@@ -86,7 +91,7 @@ export class Projetos {
     if (this.deleteID !== null) {
       console.log(this.deleteID);
       this.projetoService.deleteProjeto(this.deleteID).subscribe(() => {
-        this.items = this.items.filter(item => item.id !== this.deleteID);
+        this.items = this.items.filter(item => item.id_projeto !== this.deleteID);
 
         this.projetoService.getProjetos().subscribe(data => this.items = data);
       });
@@ -98,12 +103,12 @@ export class Projetos {
 
   resetForms() {
     this.newItem = {
-      analise : "",
-      descricao : "",
-      inicio : "",
-      final : "",
-      responsavel : "",
-      status : "Em andamento",
+      id_analise : "",
+      descricao_tecnica : "",
+      data_inicio_projeto : "",
+      data_final_projeto : "",
+      arquiteto_responsavel : "",
+      status : "1",
     };
 
     this.editing = false;
@@ -112,11 +117,11 @@ export class Projetos {
 
   invalidForms(): boolean {
     return (
-      !this.newItem.analise ||
-      !this.newItem.descricao ||
-      !this.newItem.inicio ||
-      !this.newItem.final ||
-      !this.newItem.responsavel ||
+      !this.newItem.id_analise ||
+      !this.newItem.descricao_tecnica ||
+      !this.newItem.data_inicio_projeto ||
+      !this.newItem.data_final_projeto ||
+      !this.newItem.arquiteto_responsavel ||
       !this.newItem.status
     );
   }
@@ -138,9 +143,9 @@ export class Projetos {
 
   closeFeedback() {
     this.showDialog = false;
-    this.dialogType = 'alert';
-    this.dialogTitle = '';
-    this.dialogMessage = '';
+    this.dialogType = "alert";
+    this.dialogTitle = "";
+    this.dialogMessage = "";
     this.deleteID = null;
   }
 }

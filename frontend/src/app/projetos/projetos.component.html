@@ -10,33 +10,33 @@
 
 <form>
     <label for="analise">Análise aprovada para o projeto:</label>
-    <select [(ngModel)]="newItem.analise" name="analise" id="analise">
+    <select [(ngModel)]="newItem.id_analise" name="analise" id="analise">
         <option value="">-- Selecione um ID--</option>
         <option *ngFor="let analise of analises" [value]="analise">{{ analise }}</option>
     </select>
     <br>
 
     <label for="descricao">Descrição técnica:</label>
-    <input [(ngModel)]="newItem.descricao" name="descricao" id="descricao" type="text" placeholder="Explicação do projeto"/>
+    <input [(ngModel)]="newItem.descricao_tecnica" name="descricao" id="descricao" type="text" placeholder="Explicação do projeto"/>
     <br>
 
     <div class="datas">
         <label for="inicio">Início do projeto:</label>
-        <input [(ngModel)]="newItem.inicio" name="inicio" id="inicio" type="date"/>
+        <input [(ngModel)]="newItem.data_inicio_projeto" name="inicio" id="inicio" type="date"/>
         
         <label for="final">Fim do projeto:</label>
-        <input [(ngModel)]="newItem.final" name="final" id="final" type="date"/> 
+        <input [(ngModel)]="newItem.data_final_projeto" name="final" id="final" type="date"/> 
     </div>
 
     <label for="responsavel">Arquiteto:</label>
-    <input [(ngModel)]="newItem.responsavel" name="responsavel" id="responsavel" type="text" placeholder="Desenvolvedor encarregado"/>
+    <input [(ngModel)]="newItem.arquiteto_responsavel" name="responsavel" id="responsavel" type="text" placeholder="Desenvolvedor encarregado"/>
     <br>
 
     <p>Status</p><br>
     <div class="status">
-        <input [(ngModel)]="newItem.status" type="radio" id="status_0" name="status_projeto" value="Em andamento" checked>
+        <input [(ngModel)]="newItem.status" type="radio" id="status_0" name="status_projeto" value="1" checked>
         <label for="status_0">Em andamento</label>
-        <input [(ngModel)]="newItem.status" type="radio" id="status_1" name="status_projeto" value="Em implementação">   
+        <input [(ngModel)]="newItem.status" type="radio" id="status_1" name="status_projeto" value="2">   
         <label for="status_1">Em implementação</label>
     </div>
     <br>
@@ -59,13 +59,13 @@
 </thead>
 <tbody>
     <tr *ngFor="let item of items">
-        <td>{{ item.id }}</td>
-        <td>{{ item.analise }}</td>
-        <td>{{ item.descricao }}</td>
-        <td>{{ item.inicio }}</td>
-        <td>{{ item.final }}</td>
-        <td>{{ item.responsavel }}</td>
-        <td>{{ item.status }}</td>
+        <td>{{ item.idProjeto }}</td>
+        <td>{{ item.idAnalise }}</td>
+        <td>{{ item.descricaoTecnica }}</td>
+        <td>{{ item.dataInicioProjeto }}</td>
+        <td>{{ item.dataFinalProjeto }}</td>
+        <td>{{ item.arquitetoResponsavel }}</td>
+        <td>{{ statusMap[item.status] || "Desconhecido" }}</td>
         <td>
             <button (click)="editItem(item)">Editar</button>
             <button (click)="confirmDelete(item.id)">Excluir</button>

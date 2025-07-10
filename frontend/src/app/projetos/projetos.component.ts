@@ -81,9 +81,14 @@ export class Projetos {
 
 
   editItem(item: any) {
-    this.newItem = {...item};
+    this.newItem = {id_analise : item.idAnalise,
+                    descricao_tecnica : item.descricaoTecnica,
+                    data_inicio_projeto : item.dataInicioProjeto,
+                    data_final_projeto : item.dataFinalProjeto,
+                    arquiteto_responsavel : item.arquitetoResponsavel,
+                    status : item.status};
     this.editing = true;
-    this.editID = item.id_projeto;
+    this.editID = item.idProjeto;
   };
 
 

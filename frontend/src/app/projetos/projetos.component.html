@@ -68,7 +68,7 @@
         <td>{{ statusMap[item.status] || "Desconhecido" }}</td>
         <td>
             <button (click)="editItem(item)">Editar</button>
-            <button (click)="confirmDelete(item.id)">Excluir</button>
+            <button (click)="confirmDelete(item.idProjeto)">Excluir</button>
         </td>
     </tr>
 </tbody>

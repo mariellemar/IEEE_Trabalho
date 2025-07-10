@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
-from . import models, schemas
+import models
+import schemas
 
 
 def create_projeto(db: Session, projeto: schemas.ProjetoCreate):
@@ -10,11 +11,14 @@ def create_projeto(db: Session, projeto: schemas.ProjetoCreate):
 
     return db_projeto
 
+
 def get_projetos(db: Session):
     return db.query(models.Projeto).all()
 
+
 def get_projeto_by_id(db: Session, projeto_id: int):
     return db.query(models.Projeto).filter(models.Projeto.id_projeto == projeto_id).first()
+
 
 def update_projeto(db: Session, projeto_id: int, dados: schemas.ProjetoCreate):
     db_projeto = db.query(models.Projeto).filter(models.Projeto.id_projeto == projeto_id).first()
@@ -25,6 +29,7 @@ def update_projeto(db: Session, projeto_id: int, dados: schemas.ProjetoCreate):
     db.commit()
     db.refresh(db_projeto)
     return db_projeto
+
 
 def delete_projeto(db: Session, projeto_id: int):
     db_projeto = db.query(models.Projeto).filter(models.Projeto.id_projeto == projeto_id).first()

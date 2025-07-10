@@ -1,0 +1,15 @@
+<div class="dialog-backdrop" *ngIf="show">
+  <div class="dialog-box">
+    <h3>{{ title }}</h3>
+    <p>{{ message }}</p>
+
+    <div class="actions" *ngIf="type === 'confirm'">
+      <button class="confirm" (click)="onConfirm()">Confirmar</button>
+      <button class="cancel" (click)="onClose()">Cancelar</button>
+    </div>
+
+    <div class="actions" *ngIf="type === 'alert'">
+      <button class="confirm" (click)="onClose()">OK</button>
+    </div>
+  </div>
+</div>
